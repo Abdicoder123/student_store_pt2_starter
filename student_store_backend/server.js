@@ -6,6 +6,7 @@ const { NotFoundError } = require("./utils/errors");
 const authRoutes = require("./routes/auth");
 const router = require("../routes/orders");
 const store = require("../routes/store");
+const security = require("./middleware/security");
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(cors());
 app.use(express.json());
 // log requests info
 app.use(morgan("tiny"));
+app.use(security.extractUserFromJwt);
 
 app.use("/auth", authRoutes);
 app.use("/orders", router);
