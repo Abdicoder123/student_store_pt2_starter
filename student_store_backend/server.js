@@ -19,7 +19,8 @@ app.use(express.json());
 app.use(morgan("tiny"));
 
 app.use("/auth", authRoutes);
-
+app.use("/orders", router);
+app.use("/store", store);
 /** Handle 404 errors -- this matches everything */
 app.use((req, res, next) => {
   return next(new NotFoundError());
